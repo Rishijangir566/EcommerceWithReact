@@ -2,9 +2,10 @@
 import { useContext } from "react"
 import { Link } from "react-router-dom"
 import { ecomContext } from "../App"
+import CartQty from "../components/CartQty"
 
 function Product({product}) {
-    const {handleAddToCArt}=useContext(ecomContext) 
+    const {handleAddToCart,isProductInCart}=useContext(ecomContext) 
  
   return (
     <>
@@ -15,7 +16,10 @@ function Product({product}) {
               <h2 className=" text-2xl font-bold text-blue-800">Price :{product.price}</h2>
             </div>
             <div className="btn text-center mt-4" >
-              <Link to="" onClick={(e)=>{e.preventDefault(),handleAddToCArt(product)} } className=" px-12 py-2 bg-red-600 rounded-md " > Add To Cart</Link>
+            {isProductInCart(product)?
+            (<CartQty product={product}/>):
+            (<Link to="" onClick={(e)=>{e.preventDefault(), handleAddToCart(product)}} className=" px-12 py-2 bg-green-800 text-white rounded-md " > Add To Cart</Link>)}
+              
             </div>
              </div>
           
