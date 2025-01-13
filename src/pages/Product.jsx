@@ -17,7 +17,7 @@ function Product({product}) {
             </div>
             <div className="btn text-center mt-4" >
             {isProductInCart(product)?
-            (<CartQty product={product}/>):
+            (<CartQty Product={product}/>):
             (<Link to="" onClick={(e)=>{e.preventDefault(), handleAddToCart(product)}} className=" px-12 py-2 bg-green-800 text-white rounded-md " > Add To Cart</Link>)}
               
             </div>

@@ -37,7 +37,8 @@ function App() {
    const [cart ,setCart]=useState([]);
 
    function handleAddToCart(addProduct){
-      setCart([...cart,addProduct])
+    const productAddToCart ={...addProduct , quantity:1};
+      setCart([...cart,productAddToCart])
    }
 
    function handleRemoveFromCart(removeproduct){
