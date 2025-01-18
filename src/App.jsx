@@ -41,10 +41,26 @@ function App() {
       setCart([...cart,productAddToCart])
    }
 
-   function handleRemoveFromCart(removeproduct){
+   function handleRemoveFromCart(productId){
       setCart(cart.filter((cartItem)=>{
-        return cartItem.id!==removeproduct.id}))
+        return cartItem.id!==productId}))
    }
+
+  function Increment(productId){
+    setCart(cart.map((cartItem)=>{
+      cartItem.id===productId? {...cartItem ,quantity:cartItem.quantity+1} :cartItem
+    }))
+  }
+  function Decrement(productId){
+    setCart(cart.map((cartItem)=>{
+      cartItem.id===productId? {...cartItem ,quantity:cartItem.quantity-1} :cartItem
+    }))
+  }
+
+  function getFoundCartQty (productId){
+    return cart.find((cartItem)=>cartItem.id===productId).quantity
+   
+} 
 
    function isProductInCart(addProduct){
        const productFound= cart.find((cartItem)=>{
@@ -54,7 +70,7 @@ function App() {
        
   return (
     <>
-    <ecomContext.Provider value={{cart,setCart,handleAddToCart,isProductInCart,handleRemoveFromCart}}> 
+    <ecomContext.Provider value={{cart,setCart,handleAddToCart,isProductInCart,handleRemoveFromCart ,getFoundCartQty,Increment,Decrement}}> 
       <RouterProvider router={router}/>
     </ecomContext.Provider>
     </>
